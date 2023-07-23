@@ -1,0 +1,210 @@
+﻿<Window x:Class="ClockLite.ClockConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:ClockLite"
+        mc:Ignorable="d"
+        Title="ClockConfiguration" Height="400" Width="550" d:DataContext="{local:ClockArgs}" ResizeMode="CanMinimize">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:FontColorConverter x:Key="FontColorConverter"/>
+            
+            <SolidColorBrush x:Key="Button.MouseOver.Background" Color="White"/>
+            <SolidColorBrush x:Key="Button.Selected.Font" Color="#62afff"/>
+            <SolidColorBrush x:Key="Button.Primary.Default.Background" Color="#409eff"/>
+            <SolidColorBrush x:Key="Button.Primary.MouseOver.Background" Color="#66b1ff"/>
+            <SolidColorBrush x:Key="Button.Primary.Pressed.Background" Color="#3a8ee6"/>
+            <SolidColorBrush x:Key="Button.Danger.Default.Background" Color="#f56c6c"/>
+            <SolidColorBrush x:Key="Button.Danger.MouseOver.Background" Color="#f78989"/>
+            <SolidColorBrush x:Key="Button.Danger.Pressed.Background" Color="#dd6161"/>
+            <SolidColorBrush x:Key="Button.Success.Default.Background" Color="#67c23a"/>
+            <SolidColorBrush x:Key="Button.Success.MouseOver.Background" Color="#85ce61"/>
+            <SolidColorBrush x:Key="Button.Success.Pressed.Background" Color="#5daf34"/>
+            <SolidColorBrush x:Key="Button.Default.Default.Border" Color="#dcdfe6"/>
+            <SolidColorBrush x:Key="Button.Default.MouseOver.Border" Color="#c6e2ff"/>
+            <SolidColorBrush x:Key="Button.Default.Pressed.Border" Color="#3a8ee6"/>
+            <SolidColorBrush x:Key="Button.Default.Default.Background" Color="white"/>
+            <SolidColorBrush x:Key="Button.Default.MouseOver.Background" Color="#ecf5ff"/>
+            <SolidColorBrush x:Key="Button.Default.Default.Foreground" Color="Black"/>
+            <SolidColorBrush x:Key="Button.Default.MouseOver.Foreground" Color="#409eff"/>
+            
+            <Style TargetType="Label" x:Key="LabelProperty">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="12 4"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!--WindowFix-->
+            <RowDefinition Height="Auto"/> <!--separate-->
+            <RowDefinition Height="Auto"/> <!--FontSize-->
+            <RowDefinition Height="Auto"/> <!--separate-->
+            <RowDefinition Height="Auto"/> <!--WindowStat-->
+            <RowDefinition Height="Auto"/> <!--separate-->
+            <RowDefinition Height="Auto"/> <!--FontColor-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0">
+                    <Label Content="字体大小" Style="{StaticResource LabelProperty}"/>
+                </Border>
+                <Border Grid.Column="1">
+                    <TextBox Width="64" FontSize="16" Margin="12 4 36 4" VerticalAlignment="Center" 
+                             Text="{Binding Path=FontSize}"/>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="3" Margin="8 0">
+            <Separator/>
+        </Border>
+        
+        <Border Grid.Row="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0">
+                    <Label Content="窗体高度" Style="{StaticResource LabelProperty}"/>
+                </Border>
+                <Border Grid.Column="1">
+                    <TextBox Width="64" FontSize="16" Margin="12 4 36 4" VerticalAlignment="Center"
+                             Text="{Binding Path=WindowHeight}"/>
+                </Border>
+                <Border Grid.Column="2">
+                    <Label Content="窗体宽度" Style="{StaticResource LabelProperty}"/>
+                </Border>
+                <Border Grid.Column="3">
+                    <TextBox Width="64" FontSize="16" Margin="12 4 36 4" VerticalAlignment="Center"
+                             Text="{Binding Path=WindowWidth}"/>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="5" Margin="8 0">
+            <Separator/>
+        </Border>
+        
+        <Border Grid.Row="6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0">
+                    <Label Content="字体颜色" Style="{StaticResource LabelProperty}"/>
+                </Border>
+                <Border Grid.Column="1">
+                    <TextBox Width="120" FontSize="16" Margin="12 4 12 4" VerticalAlignment="Center"
+                             Text="{Binding FontColor, Converter={StaticResource FontColorConverter}}"/>
+                </Border>
+                <Border Grid.Column="2">
+                    <Label Width="18" Height="18" Background="{Binding Path=FontColor, Mode=OneWay, Converter={StaticResource FontColorConverter}}" Margin="12 0"/>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="8" Margin="12 8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="1" Margin="12 8">
+                    <Button Content="保存" Padding="12 8" Click="SaveButton_OnClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Padding="12 8" CornerRadius="4" x:Name="Border">
+                                                <ContentPresenter x:Name="ContentPresenter"></ContentPresenter>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsEnabled" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Primary.Default.Background}"/>
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Button.Default.Default.Border}"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Primary.MouseOver.Background}"/>
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Button.Default.MouseOver.Border}"/>
+                                                    <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Default.Default.Foreground}"/>
+                                                </Trigger> 
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Primary.Pressed.Background}"/>
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Button.Default.Pressed.Border}"/>
+                                                    <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Default.Default.Foreground}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+                <Border Grid.Column="2">
+                    <Button Content="取消" Padding="12 8" Click="CancelButton_OnClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Padding="12 8" CornerRadius="4" x:Name="Border" BorderThickness="1.5">
+                                                <ContentPresenter x:Name="ContentPresenter"></ContentPresenter>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsEnabled" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Default.Default.Background}"/>
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Button.Default.Default.Border}"/>
+                                                    <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Default.Default.Foreground}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Default.MouseOver.Background}"/>
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Button.Default.MouseOver.Border}"/>
+                                                    <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Default.Default.Foreground}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Default.MouseOver.Background}"/>
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Button.Default.Pressed.Border}"></Setter>
+                                                    <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Default.Default.Foreground}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

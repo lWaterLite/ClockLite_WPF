@@ -1,0 +1,28 @@
+﻿<Application x:Class="ClockLite.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             Startup="App_OnStartup" ShutdownMode="OnExplicitShutdown" Exit="App_OnExit">
+    
+    <Application.Resources>
+        
+        <!--External Font Digital-7-->
+        <FontFamily x:Key="FontDigital7">pack://application:,,,/Resources/#Digital-7</FontFamily>
+        
+        <!--TrayIcon ContextMenu-->
+        <hc:NotifyIcon x:Key="TrayIcon"
+                       Text="ClockLite"
+                       Visibility="Visible"
+                       Icon="ClockLite.ico">
+            <hc:NotifyIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="固定窗口" Name="MenuItemFixed" Click="MenuItemFixed_OnClick"/>
+                    <MenuItem Header="设置" Name="MenuItemSetting" Click="MenuItemConfig_OnClick"/>
+                    <MenuItem Header="退出" Click="MenuItemExit_OnClick"/>
+                </ContextMenu>
+            </hc:NotifyIcon.ContextMenu>
+        </hc:NotifyIcon>
+        
+    </Application.Resources>
+    
+</Application>
